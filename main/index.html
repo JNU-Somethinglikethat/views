@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Campustore</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; }
+    body { font-family: 'Roboto', sans-serif;}
+    li { list-style: none; }
+    a { text-decoration: none; }
+    img { border: 0; }
+    body {
+      min-width: 320px;
+    }
+    /*전역 헤더*/
+    .global_header {
+      border-bottom: 3px solid #d9d9d9;
+      height: 100px;
+      position: relative;
+      background-color: #ecf0f1;
+    }
+    .global_header .logo {
+      display: block;
+      text-align: center;
+      height: 100px;
+    }
+    .global_header .logo img {
+      width: 180px;
+    }
+    .global_header #search {
+      display: inline-block;
+      position: absolute;
+      right: 10px;
+    }
+    
+    .global_header #login {
+      position: absolute;
+      right: 12px; bottom: 2px;
+      color: #1abc9c;
+      padding: 10px;
+      border: 0;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .global_header #login:active {
+      color: #087f5b;
+      font-size: 1.2rem;
+      right: 10px; bottom: 0;
+    }
+    .global_header .bottom_header {
+      height: 35px;
+      border-bottom: 3px solid #d9d9d9;
+    }
+    .global_header .bottom_header #hamburger {
+      display: inline-block;
+      margin-left: 5px; margin-top: 3px;
+      width: 30px; height: 30px;
+      font-size: 30px; 
+      color: #1abc9c;
+    }
+    .global_header .bottom_header #search {
+      font-size: 30px; color: #2c3e50;
+      display: inline-block;
+      margin-top: 5px; margin-right: 3px;
+    }
+    .global_header .bottom_header .menu_category {
+      display: none;
+    }
+    @media screen and (min-width: 768px) {
+      .global_header .bottom_header .menu_category {
+        display: block;
+        margin-left: 50px; margin-right: 50px;
+        position: relative; bottom: 34px;
+        text-align: center;
+      }
+      
+      .global_header .bottom_header .menu_category li {
+        display: inline-block;
+        margin: 0 3px;
+      }
+      .global_header .bottom_header .menu_category li a {
+        display: inline-block;
+        padding: 6px 20px;
+        color: #212529;
+      }
+    }
+
+    /* 사이드 메뉴 */
+    #side_menu {
+      width: 0; height:100%;
+      overflow-x: hidden;
+      transition: width .3s;
+      position: fixed; top: 0; left: 0;
+      z-index: 1;
+      background-color: #1abc9c;
+    }
+    #side_menu .exit_wrap {
+      position: relative;
+    }
+    #side_menu .logo_wrap {
+      background-color: #f8f8f8;
+    }
+    #side_menu .logo_wrap img {
+      width: 100%;
+    }
+    #side_menu #side_exit {
+      color: #1abc9c;
+      position: absolute;
+      font-size: 1.4rem;
+      top: 5px; right: 10px;
+    }
+    #side_menu ul {
+      
+    }
+    @media screen and (min-width: 768px) {
+      #side_menu ul .menu_category_mobile {
+        display: none;
+      }
+    }
+
+    #side_menu ul li {
+      text-align: center;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+    #side_menu ul li a {
+      display: block;
+      padding: 10px 0;
+      color: #ecf0f1;
+    }
+
+    /* 캐러셀 */
+    main .carousel {
+      margin-top: 35px;
+      height: 300px;
+    }
+    main .carousel header {
+      width: 100%; height: 100px;
+      border-bottom: 3px solid #d9d9d9;
+      position: relative;
+      height: 300px;
+    }
+    main .carousel header img {
+      width: 100%;
+      height: 300px;
+    }
+    main .carousel header .overlay {
+      position: relative; bottom: 100px;
+      width: 100%; height: 100px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%,rgba(0,0,0,0) 100%);
+    }
+    main .carousel header a {
+      display: block;
+      position: relative; bottom: 200px;
+      height: 100px;
+    }
+    main .carousel header a h1 {
+      padding: 0 15px 0 15px;
+      text-align: center;
+      line-height: 100px;
+      color: #ecf0f1;
+      font-weight: 400;
+    }
+    main .carousel header .slide {
+      display: none;
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+    @media screen and (min-width: 1024px) {
+      main .carousel header {
+        /*height: 150px;*/
+      }
+      main .carousel header .slide {
+        display: block;
+        width: 33.3333%;
+        height: 300px;
+        float: left;
+      }
+    }
+    
+    /* 컨텐츠 */
+    main .contents {
+      padding: 0 15px 30px 15px;
+      background-color: #ecf0f1;
+    }
+    @media screen and (min-width: 768px) {
+      main .contents {
+        overflow: hidden;
+      }
+    }
+
+   /* 랭킹 */
+    main .contents .ranking {
+      padding-top: 30px;
+    }
+    @media screen and (min-width: 768px) {
+      main .contents .ranking {
+        width: 33.3333%;
+      }
+      main .contents .ranking:first-child {
+        float: left;
+      }
+      main .contents .ranking:nth-child(2) {
+        float: left;
+      }
+      main .contents .ranking:nth-child(3) {
+        float: right;
+      }
+    }
+
+    main .contents .ranking .ranking_heading {
+      position: relative;
+      height: 30px;
+    }
+    main .contents .ranking .ranking_heading h1 {
+      position: relative;
+      top:2px; left: 5px;
+    }
+    main .contents .ranking .ranking_heading i {
+      position: absolute; right: 2px; bottom: 5px;
+      color: #1abc9c
+    }
+    main .contents .ranking .ranking_body {
+      background-color: #f8f9fa;
+      border: 1.5px solid #adb5bd;
+      border-radius: 3px;
+    }
+    /* 랭킹 안의 항목 */
+    main .contents .ranking .ranking_body .item {
+      padding: 10px 5px 10px 10px;
+      border-bottom: 1.2px solid #ecf0f1;
+      overflow: hidden;
+    }
+    main .contents .ranking .ranking_body .item img {
+      border-radius: 15px;
+      display: block;
+      width: 75px; height: 75px;
+      float:left;
+      margin-top: 10px;
+    }
+    main .contents .ranking .ranking_body .item .description {
+      float: left;
+      padding-left: 5px; padding-top: 10px; padding-right: 0;
+      display: block;
+      width: 160px;
+    }
+    main .contents .ranking .ranking_body .item .description h1{
+      font-size: 0.9rem;
+      padding-bottom: 5px;
+      
+    }
+    main .contents .ranking .ranking_body .item .description .category{
+      font-size: 0.7rem;
+      color: #868e96;
+    }
+    main .contents .ranking .ranking_body .item .description .star{
+      color: #f03e3e;
+    }
+    main .contents .ranking .ranking_body .item .description .price{
+      font-size: 0.65rem;
+      color: #868e96;
+    }
+
+    @keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+  </style>
+</head>
+<body>
+  <div id="side_menu">
+    <div class="exit_wrap">
+      <a id="side_exit" href="#">&#x2716;</a>
+    </div>
+    <div class="logo_wrap">
+      <img src="side_logo.png" />
+    </div>
+    <ul>
+      <div class="menu_category_mobile">
+        <li><a href="#">게임</a></li>
+        <li><a href="#">라이프 스타일</a></li>
+        <li><a href="#">미디어</a></li>
+        <li><a href="#">교육</a></li>
+        <li><a href="#">여행</a></li>
+        <li><a href="#">비즈니스</a></li>
+        <li><a href="#">기타</a></li>
+      </div>
+      <li><a href="#">마이 페이지</a></li>
+      <li><a href="#">명예의 전당</a></li>
+      <li><a href="#">빅데이터 차트</a></li>
+    </ul>
+  </div>
+  <div class="wrap">
+    <header class="global_header">
+      <div class="logo">
+        <img src="logo.png" alt="">
+      </div>
+      <a id="login" href="#">login</a>
+      <div class="bottom_header">
+        <i id="hamburger" class="material-icons">reorder</i>
+        <i id="search" class="material-icons">search</i>
+        <ul class="menu_category">
+          <li><a href="#">게임</a></li>
+          <li><a href="#">라이프 스타일</a></li>
+          <li><a href="#">미디어</a></li>
+          <li><a href="#">교육</a></li>
+          <li><a href="#">여행</a></li>
+          <li><a href="#">비즈니스</a></li>
+          <li><a href="#">기타</a></li>
+        </ul>
+      </div>
+    </header>
+    <main>
+      <section class="carousel">
+        <header>
+          <div class="slide fade">
+            <img src="temp.jpg" />
+            <div class="overlay"></div>
+            <a href="#"><h1>맥가이버도 감탄하는 도구 앱 모음</h1></a>
+          </div>
+          <div class="slide fade">
+            <img src="kitten.jpg" />
+            <div class="overlay"></div>
+            <a href="#"><h1>고양이 표범 표범</h1></a>
+          </div>
+          <div class="slide fade">
+            <img src="what.jpeg" />
+            <div class="overlay"></div>
+            <a href="#"><h1>물음표 물음표 물움표</h1></a>
+          </div>
+        </header>
+      </section>
+      <section class="contents">
+        <article class="ranking">
+          <div class="ranking_heading">
+            <h1>추천 랭킹</h1>
+            <i class="material-icons">add_box</i>
+          </div>
+          <div class="ranking_body">
+            <div class="item">
+              <img src="kitten.jpg" />
+              <div class="description">
+                <h1>도사폰 (만세력 역학도구)</h1>
+                <div class="category">생산성</div>
+                <div class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="price">35,000원</div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="what.jpeg" />
+              <div class="description">
+                <h1>제목입니다.</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="kitten.jpg" />
+              <div class="description">
+                <h1>Aa사랑스러워한국어 FlipFont</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="what.jpeg" />
+              <div class="description">
+                <h1>Aa사랑스러워한국어 FlipFont</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="ranking">
+          <div class="ranking_heading">
+            <h1>조회 랭킹</h1>
+            <i class="material-icons">add_box</i>
+          </div>
+          <div class="ranking_body">
+            <div class="item">
+              <img src="kitten.jpg" />
+              <div class="description">
+                <h1>ㅁㄴㅇㄹㅁㄴㅇㄹ</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="what.jpeg" />
+              <div class="description">
+                <h1>Lorem ipsum.</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="kitten.jpg" />
+              <div class="description">
+                <h1>ㅁㄴㅇㄹㅁㄴㅇㄹ</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="kitten.jpg" />
+              <div class="description">
+                <h1>ㅁㄴㅇㄹㅁㄴㅇㄹ</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="ranking">
+          <div class="ranking_heading">
+            <h1>조회 랭킹</h1>
+            <i class="material-icons">add_box</i>
+          </div>
+          <div class="ranking_body">
+            <div class="item">
+              <img src="kitten.jpg" />
+              <div class="description">
+                <h1>ㅁㄴㅇㄹㅁㄴㅇㄹ</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="what.jpeg" />
+              <div class="description">
+                <h1>Lorem ipsum.</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="kitten.jpg" />
+              <div class="description">
+                <h1>ㅁㄴㅇㄹㅁㄴㅇㄹ</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="kitten.jpg" />
+              <div class="description">
+                <h1>ㅁㄴㅇㄹㅁㄴㅇㄹ</h1>
+                <div class="category">폰꾸미기/런쳐</div>
+                <div class="star">&#9733;&#9733;</div>
+                <div class="price">5,000원</div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+  <script>
+    const loginButton = document.getElementById('login');
+    const searchButton = document.getElementById('search');
+    searchButton.addEventListener('click', (e) => {
+      console.log(e.target);
+    })
+
+    const sideMenu = document.getElementById('side_menu');
+
+    const sideExitButton = document.getElementById('side_exit');
+    sideExitButton.addEventListener('click', (e) => {
+      sideMenu.style.width = '0';
+    });
+
+    const menuButton = document.getElementById('hamburger');
+    menuButton.addEventListener('click', (e) => {
+      sideMenu.style.width = '250px';
+    });
+
+    document.getElementsByClassName("slide")[0].style.display = 'block';
+
+  </script>
+</body>
+</html>

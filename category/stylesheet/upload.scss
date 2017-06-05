@@ -1,5 +1,6 @@
 input{
   font-size: 1em;
+  border: none;
 }
 form {
   div {
@@ -26,6 +27,11 @@ form {
     width: 90%;
     height: 70%;
   }
+}
+
+
+textarea{
+  border: none;
 }
 
 .textAreaWrapper{

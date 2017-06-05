@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./stylesheet/upload.min.css">
+  <title>Document</title>
+</head>
+<body>
+  <form id="apkupload" method="post">
+    <div class="">
+      앱이름
+      <div class="inputWrapper alignCenter">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="">
+      버전
+      <div class="inputWrapper alignCenter">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="">
+      카테고리 <select th:field="*{category.no}">
+      <option value = "1">게임</option>
+      <option value = "2">라이프스타일</option>
+      <option value = "3">비즈니스</option>
+      <option value = "4">교육</option>
+      <option value = "5">미디어</option>
+      <option value = "8">여행</option>
+      <option value = "9">기타</option>
+      </select>
+    </div>
+    <div>
+      Apk파일
+      <div class="fileWrapper">
+        <input type="file" name="apkFile" id="apkFile"/> <br/>
+      </div>
+    </div>
+    <div id="volume">
+      <!-- 용량 <span class="volumeWrapper" id="apkVolume"></span> -->
+    </div>
+    <div class="">
+      펀딩 목표
+      <div class="inputWrapper alignCenter">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="">
+      설명
+      <div class="textAreaWrapper alignCenter">
+        <textarea class="discriptionArea" name="discription" form="apkupload" ></textarea> <br/>
+      </div>
+    </div>
+    <div class="buttonWrapper">
+      <button type="submit" class="summit">제출</button><button type="submit" class="cancle">취소</button>
+    </div>
+  </form>
+  <div style="width: 10px; height: 10px"></div>
+  <script type="text/javascript">
+  document.getElementById('apkFile').onchange = function(){
+  var filesize = document.getElementById('apkFile').files[0].size/1000;
+  console.log(filesize);
+  document.getElementById('volume').innerHTML='용량 <span class="volumeWrapper" id="apkVolume">'+filesize+"KB"+'</span>'
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마이페이지</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+  * { margin: 0; padding: 0; }
+  body { font-family: 'Roboto', sans-serif;}
+  li { list-style: none; }
+  a { text-decoration: none; }
+  img { border: 0; }
+  body {
+    min-width: 320px;
+  }
+  .global_header {
+    border-bottom: 3px solid #d9d9d9 ;
+    height: 100px;
+    position: relative;
+    background-color: #ecf0f1 ;
+  }
+  .global_header .logo {
+    display: block;
+    text-align: center;
+    height: 100px;
+  }
+  .global_header .logo img {
+    width: 180px;
+  }
+  .global_header #search {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+  }
+
+  .global_header #login {
+    position: absolute;
+    right: 12px; bottom: 2px;
+    color: #1abc9c ;
+    padding: 10px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  .global_header #login:active {
+    color: #087f5b ;
+    font-size: 1.2rem;
+    right: 10px; bottom: 0;
+  }
+  .global_header .bottom_header {
+    height: 35px;
+    border-bottom: 3px solid #d9d9d9 ;
+  }
+  .global_header .bottom_header #hamburger {
+    display: inline-block;
+    margin-left: 5px; margin-top: 3px;
+    width: 30px; height: 30px;
+    font-size: 30px;
+    color: #1abc9c ;
+  }
+  .global_header .bottom_header #search {
+    font-size: 30px; color: #2c3e50 ;
+    display: inline-block;
+    margin-top: 5px; margin-right: 3px;
+  }
+  .global_header .bottom_header .menu_category {
+    display: none;
+  }
+  @media screen and (min-width: 768px) {
+    .global_header .bottom_header .menu_category {
+      display: block;
+      margin-left: 50px; margin-right: 50px;
+      position: relative; bottom: 34px;
+      text-align: center;
+    }
+
+    .global_header .bottom_header .menu_category li {
+      display: inline-block;
+      margin: 0 3px;
+    }
+    .global_header .bottom_header .menu_category li a {
+      display: inline-block;
+      padding: 6px 20px;
+      color: #212529 ;
+    }
+  }
+  #side_menu {
+    width: 0; height:100%;
+    overflow-x: hidden;
+    transition: width .3s;
+    position: fixed; top: 0; left: 0;
+    z-index: 1;
+    background-color: #1abc9c ;
+  }
+  #side_menu .exit_wrap {
+    position: relative;
+  }
+  #side_menu .logo_wrap {
+    background-color: #f8f8f8 ;
+  }
+  #side_menu .logo_wrap img {
+    width: 100%;
+  }
+  #side_menu #side_exit {
+    color: #1abc9c ;
+    position: absolute;
+    font-size: 1.4rem;
+    top: 5px; right: 10px;
+  }
+  #side_menu ul {
+
+  }
+  @media screen and (min-width: 768px) {
+    #side_menu ul .menu_category_mobile {
+      display: none;
+    }
+  }
+
+  #side_menu ul li {
+    text-align: center;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  #side_menu ul li a {
+    display: block;
+    padding: 10px 0;
+    color: #ecf0f1 ;
+  }
+  main.mypage {
+    display: block;
+    box-sizing: border-box;
+    border: 0px;
+    width: 100%;
+    margin-top: 35px;
+    background-color: #ecf0f1;
+    padding: 25px 20px;
+  }
+
+  .mypage div.container {
+    display: block;
+    width: 100%;
+    border: 2px solid #d9d9d9;
+    background-color: #FFF;
+    padding: 15px 15px;
+    box-sizing: border-box;
+  }
+
+  .mypage div.container div.profile {
+    display: block;
+    width: 100%;
+    border: 0px;
+    padding:
+    background-color: inherit;
+    box-sizing: border-box;
+  }
+
+  .mypage h1.title {
+    display: inline-block;
+    border: 0px;
+    margin: 5px;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+  }
+
+  div.user.information {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    padding: 0px 5px;
+  }
+
+  div.user.information:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  dl dt {
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
+    text-indent: -100%;
+  }
+
+  .user.information div.user.main.image {
+    float: left;
+    text-align: center;
+    width: 40%;
+    border: 0;
+    box-sizing: border-box;
+  }
+
+  .user.main.image img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .user.information dl {
+      float: left;
+      width: 60%;
+      border: 0;
+      margin: 0;
+      padding-left: 10px;
+      box-sizing: border-box;
+  }
+
+  dt.user {
+    float: left;
+  }
+
+  dd.user {
+    margin-bottom: 3px;
+  }
+
+  dd.user.name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: -0.07rem;
+  }
+
+  dt.user.institution {
+    line-height: normal;
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #7f8c8d;
+    text-indent: 0;
+    margin-right: 8px;
+    box-sizing: border-box;
+  }
+
+  dd.user.institution {
+    font-size: 0.8rem;
+    box-sizing: border-box;
+  }
+
+  dd.user.type {
+    font-size: 0.8rem;
+    text-indent: 2.2rem;
+  }
+
+  dt.user.email {
+    line-height: normal;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    text-indent: 0;
+    margin-right: 8px;
+    box-sizing: border-box;
+  }
+
+  dd.user.email {
+    font-size: 0.8rem;
+    letter-spacing: -0.07rem;
+  }
+
+  dd.send.message.button {
+    display: inline-block;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    vertical-align: middle;
+  }
+
+  dd.send.message.button a {
+    display: block;
+    width: 100%;
+    background-color: #1abc9c;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+    padding: 3px 10px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  dd.send.message.button a:active{
+    display: block;
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  hr.mypage {
+    display: block;
+    border: 0;
+    border-radius: 2px;
+    width: 100%;
+    margin: 10px 0px;
+    height: 2px;
+    background-color: #d9d9d9;
+  }
+
+  li.application.container {
+    display: block;
+    border: solid 2px #d9d9d9;
+    padding: 10px 7%;
+    margin: 15px 20px;
+  }
+
+  dl.application.information {
+    display: inline-block;
+    width: 69%;
+  }
+
+  div.application.main.image {
+    display: inline-block;
+    width: 29%;
+  }
+
+  .application.main.image img {
+    width: 100%;
+    border: solid 1px #d9d9d9;
+    border-radius: 20px;
+  }
+
+  dd.application.name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #1abc9c;
+  }
+  </style>
+</head>
+<body>
+  <div id="side_menu">
+    <div class="exit_wrap">
+      <a id="side_exit" href="#">&#x2716;</a>
+    </div>
+    <div class="logo_wrap">
+      <img src="side_logo.png" alt="logo"/>
+    </div>
+    <ul>
+      <div class="menu_category_mobile">
+        <li><a href="#">게임</a></li>
+        <li><a href="#">라이프 스타일</a></li>
+        <li><a href="#">미디어</a></li>
+        <li><a href="#">교육</a></li>
+        <li><a href="#">여행</a></li>
+        <li><a href="#">비즈니스</a></li>
+        <li><a href="#">기타</a></li>
+      </div>
+      <li><a href="#">마이 페이지</a></li>
+      <li><a href="#">명예의 전당</a></li>
+      <li><a href="#">빅데이터 차트</a></li>
+    </ul>
+  </div>
+  <header class="global_header">
+    <div class="logo">
+      <img src="logo.png" alt="logo"/>
+    </div>
+    <a id="login" th:href="@{/login}">login</a>
+    <div class="bottom_header">
+      <i id="hamburger" class="material-icons">reorder</i>
+      <i id="search" class="material-icons">search</i>
+      <ul class="menu_category">
+        <li><a href="#">게임</a></li>
+        <li><a href="#">라이프 스타일</a></li>
+        <li><a href="#">미디어</a></li>
+        <li><a href="#">교육</a></li>
+        <li><a href="#">여행</a></li>
+        <li><a href="#">비즈니스</a></li>
+        <li><a href="#">기타</a></li>
+      </ul>
+    </div>
+  </header>
+  <main class="mypage">
+    <div class="container">
+      <div class="profile">
+        <h1 class="title">사용자 정보</h1>
+        <div class="user information">
+          <div class="user main image">
+            <img src="profile.jpg" alt=""/>
+          </div>
+          <dl>
+            <dt class="user name">이름</dt>
+            <dd class="user name">EunHyeong Boo</dd>
+            <dt class="user institution">소속</dt>
+            <dd class="user institution">제주대학교</dd>
+            <dt class="user type">타입</dt>
+            <dd class="user type">Student</dd>
+            <dt class="user email">이메일</dt>
+            <dd class="user email">boo1984@naver.com</dd>
+            <dt class="send message button">메세지</dt>
+            <dd class="send message button"><a href="">메세지보내기</a></dd>
+          </dl>
+        </div>
+      </div>
+      <hr class="mypage"/>
+      <div class="registered application">
+        <h1 class="title">등록 앱</h1>
+        <ul class="application list">
+          <li class="application container">
+            <dl class="application information">
+              <dt class="application name">앱 이름</dt>
+              <dd class="application name">CAMPUSTORE</dd>
+              <dt class="application description">설명</dt>
+              <dd class="application description">소규모 투자가 가능한 마켓 플렛폼</dd>
+              <dt class="application register date">등록 날짜</dt>
+              <dd class="application register date">2017.06.03</dd>
+              <dt class="application type">타입</dt>
+              <dd class="application type app"><span class="circle"></span>APP</dd>
+            </dl>
+            <div class="application main image"><img src="small_logo.png" alt=""/></div>
+          </li>
+          <li class="application container">
+            <dl class="application information">
+              <dt class="application name">앱 이름</dt>
+              <dd class="application name">SomethingLikeThat</dd>
+              <dt class="application description">설명</dt>
+              <dd class="application description">대학생을 위한 앱스토어</dd>
+              <dt class="application register date">등록 날짜</dt>
+              <dd class="application register date">2017.03.20</dd>
+              <dt class="application type">타입</dt>
+              <dd class="application type web"><span class="circle"></span>WEB</dd>
+            </dl>
+            <div class="application main image"><img src="small_logo.png" alt=""/></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <script type="text/javascript">
+  const loginButton = document.getElementById('login');
+  const searchButton = document.getElementById('search');
+  searchButton.addEventListener('click', (e) => {
+    console.log(e.target);
+  })
+  const sideMenu = document.getElementById('side_menu');
+
+  const sideExitButton = document.getElementById('side_exit');
+  sideExitButton.addEventListener('click', (e) => {
+    sideMenu.style.width = '0';
+  });
+
+  const menuButton = document.getElementById('hamburger');
+  menuButton.addEventListener('click', (e) => {
+    sideMenu.style.width = '250px';
+  });
+  </script>
+</body>
+</html>
